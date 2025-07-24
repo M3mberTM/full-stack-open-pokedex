@@ -1,5 +1,5 @@
 name: Deployment pipeline
-
+run-name: Deployment
 on:
   push:
     branches:

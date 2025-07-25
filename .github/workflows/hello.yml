@@ -1,7 +1,7 @@
 name: Hello World!
 run-name: Hello World!
 env:
-  COMMIT: ${{ join(github.event.commits.*.message, ', ') }}
+  COMMIT: ${{ contains(join(github.event.commits.*.message, ', '), '#skip') }}
 on:
   push:
     branches:

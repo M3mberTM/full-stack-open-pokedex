@@ -38,6 +38,7 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     needs: testing_pipeline
+    if: ${{ github.event_name == 'push' }}
     steps:
       - name: Render Deployment
         uses: sws2apps/render-deployment@main

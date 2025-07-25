@@ -1,5 +1,8 @@
 name: Hello World!
 run-name: Hello World!
+env:
+  IS_SKIP: ${{ contains(join(toJson(github.event.commits.*.message)), '#skip') }}
+  COMMIT_MESSAGE: ${{ join(toJson(github.event.commits.*.message)) }}
 on:
   push:
     branches:
@@ -14,3 +17,5 @@ jobs:
         run: date
       - name: Directory content
         run: ls -l
+      - name: Skip condition
+        run: echo ${{ github.env.IS_SKIP }}

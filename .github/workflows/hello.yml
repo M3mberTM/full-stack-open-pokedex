@@ -19,3 +19,9 @@ jobs:
         run: ls -l
       - name: Skip condition
         run: echo ${{ env.IS_SKIP }}
+  skip_job:
+    runs-on: ubuntu-latest
+    if: ${{ github.env.IS_SKIP }}
+    steps:
+      - name: Deployment should be skippedb
+        run: echo "Yes"

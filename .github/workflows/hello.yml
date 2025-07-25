@@ -18,3 +18,8 @@ jobs:
         run: ls -l
       - name: Should skip deployment?
         run: echo "$SKIP"
+  Test_job:
+    runs-on: ubuntu-latest
+    if: github.env.SKIP
+    steps:
+      - run: echo "Should be skipped"

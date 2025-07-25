@@ -18,3 +18,8 @@ jobs:
         run: ls -l
       - name: Commit messages
         run: echo "$COMMIT"
+  Test_job:
+    runs-on: ubuntu-latest
+    if: ${{ github.env.COMMIT }}
+    steps:
+      - run: echo "Should be skipped"

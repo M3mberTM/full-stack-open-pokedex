@@ -1,7 +1,7 @@
 name: Hello World!
 run-name: Hello World!
 env:
-  COMMIT: ${{ join(toJSON(github.event.commits.*.message), ', ') }}
+  COMMIT: ${{ join(github.event.commits.*.message, ', ') }}
 on:
   push:
     branches:

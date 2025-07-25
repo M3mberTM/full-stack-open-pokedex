@@ -1,5 +1,8 @@
 name: Deployment pipeline
 run-name: Deployment
+env:
+  COMMIT_MESSAGE: ${{ join(toJson(github.event.commits.*.message)) }}
+  IS_SKIP: ${{ contains(env.COMMIT_MESSAGES, '#skip') }}
 on:
   push:
     branches:
@@ -37,7 +40,7 @@ jobs:
   tag_release:
     runs-on: ubuntu-latest
     needs: testing_pipeline
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' && !env.IS_SKIP }}
     steps:
       - uses: actions/checkout@v4
       - name: Bump version and push tag
@@ -49,7 +52,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     needs: testing_pipeline
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' && !env.IS_SKIP }}
     steps:
       - name: Render Deployment
         uses: sws2apps/render-deployment@main

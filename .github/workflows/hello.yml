@@ -18,5 +18,3 @@ jobs:
         run: ls -l
       - name: Commit messages
         run: echo "$COMMIT"
-      - name: Test
-        run: echo "Test"

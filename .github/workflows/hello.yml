@@ -14,10 +14,3 @@ jobs:
         run: date
       - name: Directory content
         run: ls -l
-      - name: Should skip deployment?
-        run: echo "$SKIP"
-  Test_job:
-    runs-on: ubuntu-latest
-    if: ${{ contains(join(github.event.commits.*.message, ', '), '#skip') }}
-    steps:
-      - run: echo "Should be skipped"

@@ -2,7 +2,7 @@ name: Hello World!
 run-name: Hello World!
 env:
   IS_SKIP: ${{ contains(join(toJson(github.event.commits.*.message)), '#skip') }}
-  COMMIT_MESSAGE: ${{ join(toJson(github.event.commits.*.message)) }}
+  COMMIT_MESSAGE: ${{ toJson(github.event.commits.*.message) }}
 on:
   push:
     branches:

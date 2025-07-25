@@ -1,8 +1,5 @@
 name: Hello World!
 run-name: Hello World!
-env:
-  IS_SKIP: ${{ contains(join(toJson(github.event.commits.*.message)), '#skip') }}
-  COMMIT_MESSAGE: ${{ toJson(github.event.commits.*.message) }}
 on:
   push:
     branches:
@@ -18,12 +15,4 @@ jobs:
       - name: Directory content
         run: ls -l
       - name: Commit messages
-        run: echo ${{ env.COMMIT_MESSAGE }}
-      - name: Skip condition
-        run: echo ${{ env.IS_SKIP }}
-  skip_job:
-    runs-on: ubuntu-latest
-    if: ${{ github.env.IS_SKIP }}
-    steps:
-      - name: Deployment should be skippedb
-        run: echo "Yes"
+        run: echo ${{ toJson(github.event.commits.*.message) }}

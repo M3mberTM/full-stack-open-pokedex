@@ -13,7 +13,6 @@ jobs:
   testing_pipeline:
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    if: ${{ false }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

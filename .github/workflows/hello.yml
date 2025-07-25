@@ -17,6 +17,8 @@ jobs:
         run: date
       - name: Directory content
         run: ls -l
+      - name: Commit messages
+        run: echo ${{ env.COMMIT_MESSAGE }}
       - name: Skip condition
         run: echo ${{ env.IS_SKIP }}
   skip_job:

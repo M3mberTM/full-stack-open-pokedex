@@ -42,7 +42,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     needs: testing_pipeline
-    if: (github.event_name == 'push') && ${{ !contains(join(github.event.commits.*.message, ', '), '#skip') }}
+    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
     steps:
       - name: Render Deployment
         uses: sws2apps/render-deployment@main

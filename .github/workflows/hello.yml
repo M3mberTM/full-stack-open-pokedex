@@ -1,5 +1,7 @@
 name: Hello World!
 run-name: Hello World!
+env:
+  COMMIT: ${{ toJson(github.event.commits.*.message) }}
 on:
   push:
     branches:
@@ -15,6 +17,4 @@ jobs:
       - name: Directory content
         run: ls -l
       - name: Commit messages
-        env:
-          COMMIT: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT"

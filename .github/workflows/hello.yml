@@ -20,6 +20,6 @@ jobs:
         run: echo "$SKIP"
   Test_job:
     runs-on: ubuntu-latest
-    if: ${{ github.env.SKIP == 'true' }}
+    if: ${{ contains(join(github.event.commits.*.message, ', '), '#skip') }}
     steps:
       - run: echo "Should be skipped"

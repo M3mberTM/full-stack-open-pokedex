@@ -18,7 +18,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: echo "$SKIP"
+      - run: echo "${{ env.SKIP }}"
+      - run: echo "${{ github }}"
       - name: Install dependencies
         run: npm install
       - name: Check style

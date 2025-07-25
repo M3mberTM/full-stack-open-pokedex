@@ -1,8 +1,7 @@
 name: Deployment pipeline
 run-name: Deployment
 env:
-  COMMIT_MESSAGE: ${{ join(toJson(github.event.commits.*.message)) }}
-  IS_SKIP: ${{ contains(env.COMMIT_MESSAGES, '#skip') }}
+  IS_SKIP: ${{ contains(join(toJson(github.event.commits.*.message)), '#skip') }}
 on:
   push:
     branches:

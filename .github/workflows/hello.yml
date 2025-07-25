@@ -15,4 +15,6 @@ jobs:
       - name: Directory content
         run: ls -l
       - name: Commit messages
-        run: echo ${{ toJson(github.event.commits.*.message) }}
+        env:
+          COMMIT: ${{ toJson(github.event.commits.*.message) }}
+        run: echo "$COMMIT"

@@ -13,7 +13,6 @@ jobs:
   testing_pipeline:
     timeout-minutes: 15
     runs-on: ubuntu-latest
-    if: false
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -41,7 +40,7 @@ jobs:
   tag_release:
     runs-on: ubuntu-latest
     needs: testing_pipeline
-    if: (github.event_name == 'push') && (github.env.SKIP == 'false') && false
+    if: (github.event_name == 'push') && ${{ !contains(join(github.event.commits.*.message, ', '), '#skip') }}
     steps:
       - uses: actions/checkout@v4
       - name: Bump version and push tag
@@ -53,7 +52,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     needs: testing_pipeline
-    if: (github.event_name == 'push') && (github.env.SKIP == 'false') && false
+    if: (github.event_name == 'push') && ${{ !contains(join(github.event.commits.*.message, ', '), '#skip') }}
     steps:
       - name: Render Deployment
         uses: sws2apps/render-deployment@main

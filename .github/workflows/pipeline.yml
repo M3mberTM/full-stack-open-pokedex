@@ -58,3 +58,23 @@ jobs:
           serviceId: ${{ secrets.RENDER_SERVICE_ID }}
           apiKey: ${{ secrets.RENDER_API_KEY }}
           multipleDeployment: false #optional, default true
+      - name: New Deployment Success Notification
+        uses: rjstone/discord-webhook-notify@v2
+        if: ${{ success() }}
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          severity: info
+          color: '#008000'
+          title: Successful deployment
+          description: "Deployment to Render was a ***Success***"
+          footer: Pokedex app Github Actions
+      - name: New Deployment Failure Notification
+        uses: rjstone/discord-webhook-notify@v2
+        if: ${{ failure() }}
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          severity: info
+          color: '#ff0000'
+          title: Deployment failed
+          description: "Something went wrong in the deployment"
+          footer: Pokedex app Github Actions

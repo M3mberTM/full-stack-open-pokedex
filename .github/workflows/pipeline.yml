@@ -76,5 +76,5 @@ jobs:
           severity: info
           color: '#ff0000'
           title: Deployment failed
-          description: "Something went wrong in the deployment"
+          description: "Something went wrong in the deployment."
           footer: Pokedex app Github Actions
